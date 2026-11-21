@@ -78,7 +78,7 @@ dependencies:
   win_toast: null
 
 dependency_overrides:
-  sqflite: ^2.3.2
+  sqflite: '>=2.3.0 <2.4.0'
   syncfusion_flutter_core: 29.1.37
   flutter_plugin_android_lifecycle: ^2.0.27
   geolocator_android: ^4.4.1

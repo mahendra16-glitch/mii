@@ -31,11 +31,21 @@ jobs:
       - name: Build Unsigned IPA
         run: |
           flutter build ipa --release --no-codesign
+          mkdir -p build/ios/ipa
+          if [ -d "build/ios/archive/Runner.xcarchive/Products/Applications" ]; then
+            cd build/ios/archive/Runner.xcarchive/Products/Applications
+            mkdir -p Payload
+            cp -r Runner.app Payload/
+            zip -r ../../../../../build/ios/ipa/MyGenie_Restaurant_Unsigned.ipa Payload
+            cd ../../../../../
+          fi
 
       - name: Upload IPA Artifact
         uses: actions/upload-artifact@v4
         with:
           name: MyGenie_Restaurant_iOS_IPA
-          path: build/ios/ipa/*.ipa
+          path: |
+            build/ios/ipa/*.ipa
+            build/ios/archive/Runner.xcarchive
           retention-days: 7
 

@@ -31,13 +31,12 @@ jobs:
       - name: Build Unsigned IPA
         run: |
           flutter build ipa --release --no-codesign
-          mkdir -p build/ios/ipa
-          if [ -d "build/ios/archive/Runner.xcarchive/Products/Applications" ]; then
-            cd build/ios/archive/Runner.xcarchive/Products/Applications
+          mkdir -p "$GITHUB_WORKSPACE/build/ios/ipa"
+          if [ -d "$GITHUB_WORKSPACE/build/ios/archive/Runner.xcarchive/Products/Applications" ]; then
+            cd "$GITHUB_WORKSPACE/build/ios/archive/Runner.xcarchive/Products/Applications"
             mkdir -p Payload
             cp -r Runner.app Payload/
-            zip -r ../../../../../build/ios/ipa/MyGenie_Restaurant_Unsigned.ipa Payload
-            cd ../../../../../
+            zip -r "$GITHUB_WORKSPACE/build/ios/ipa/MyGenie_Restaurant_Unsigned.ipa" Payload
           fi
 
       - name: Upload IPA Artifact

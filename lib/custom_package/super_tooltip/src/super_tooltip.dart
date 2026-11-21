@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:mygenie_restaurant/custom_package/super_tooltip/src/utils.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide TooltipPositionDelegate;
 
 import 'bubble_shape.dart';
 import 'enums.dart';
